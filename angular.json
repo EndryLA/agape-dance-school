@@ -10,7 +10,17 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "type":"component",
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "type":"directive",
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true,
+          "type": "service"
         }
       },
       "root": "",
@@ -23,6 +33,9 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/styles"]
+            },
             "assets": [
               {
                 "glob": "**/*",
@@ -30,7 +43,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/app/shared/styles/design-system.scss"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",

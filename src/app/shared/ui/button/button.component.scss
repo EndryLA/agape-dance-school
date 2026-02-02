@@ -1,0 +1,60 @@
+@import '../../styles/design-system';
+
+button {
+    background-color: unset;
+    outline:none;
+    border:none;
+    transition:all .1s ease-in;
+    cursor:pointer;
+}
+
+button[size = 'sm'] {
+    padding: 8px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+button[size = 'md'] {
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button[size = 'lg'] {
+    padding: 16px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+ 
+button[variant = 'primary'] {
+    background-color: $primary;
+    border: 1px solid $primary;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(248, 248, 44, 0.3);
+    }
+}
+
+button[variant = 'dark'] {
+    background-color: $dark;
+    color: white;
+    border: 1px solid $dark;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+button[variant = 'neutral'] {
+    background-color: $neutral;
+    color: #333333;
+    border: 1px solid #CCCCCC;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+}
+

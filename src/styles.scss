@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  font-size:16px;
+  font-family: Agrandir, "Helvetica Neue", sans-serif;
+  background-color: rgb(166, 200, 235,.2);
+}
+
+
+
+@font-face {
+  font-family: "Agrandir";
+  src: url("../public/fonts/Agrandir/._Agrandir-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:'Streewear';
+  src: url("../public/fonts/Streetwear/Streetwear.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Streewear";
+}   

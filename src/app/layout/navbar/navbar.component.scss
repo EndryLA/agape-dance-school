@@ -1,0 +1,97 @@
+@import '../../shared/styles/design-system';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-bottom: 1px solid #E6E6E6;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 20px 40px;
+  }
+
+  img {
+    height: 40px;
+  }
+
+  input {
+    display: none;
+  }
+
+  .hamburger {
+    cursor: pointer;
+
+    @media (min-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    bottom: 0;
+    width: 300px;
+    max-width: 80vw;
+    background: white;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+
+    @media (min-width: $breakpoint-md) {
+      position: static;
+      width: auto;
+      padding: 0;
+      flex-direction: row;
+      align-items: center;
+      gap: 32px;
+      box-shadow: none;
+    }
+
+    .close {
+      cursor: pointer;
+      align-self: flex-end;
+      margin-bottom: 20px;
+
+      @media (min-width: $breakpoint-md) {
+        display: none;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $dark;
+      font-weight: 600;
+      padding: 12px 0;
+      position: relative;
+
+      @media (min-width: $breakpoint-md) {
+        padding: 0;
+
+        &:hover::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: $dark;
+        }
+      }
+    }
+  }
+
+  input:checked ~ nav {
+    right: 0;
+  }
+}
