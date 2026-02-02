@@ -6,11 +6,21 @@ body {
   background-color: rgb(166, 200, 235,.2);
 }
 
+* {
+  letter-spacing: .03em;
+}
 
 
 @font-face {
   font-family: "Agrandir";
   src: url("../public/fonts/Agrandir/._Agrandir-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Agrandir Grand Heavy";
+  src: url("../public/fonts/Agrandir/._Agrandir-GrandHeavy.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
@@ -25,3 +35,33 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Streewear";
 }   
+
+h1 {
+  font-size: clamp(2.5rem, 1.94vw + 1.92rem, 4.25rem);
+  line-height:150%;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 1.39vw + 1.33rem, 3rem);
+}
+
+.page-section {
+  display:flex;
+  flex-direction: column;
+  gap:80px;
+  text-align: center;
+  margin:0 auto;
+  max-width:1400px;
+  padding:0 16px;
+}
+
+.titles-container {
+  h2 {
+    line-height:120%;
+  }
+  p {
+    font-size:18px;
+    letter-spacing: 0.03em;
+    margin:0;
+  }
+}

@@ -1,0 +1,58 @@
+@import '../../../../shared/styles/design-system';
+
+
+
+
+.collaborators-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap:wrap;
+  gap: 62px;
+  max-width:920px;
+  margin:0 auto;
+  
+  article {
+
+    p {
+      text-align: center;
+      font-weight:bold;
+      font-size:18px;
+      font-family:'Agrandir Grand Heavy';
+      max-width:250px;
+    }
+
+  }
+
+  @media screen and (max-width:600px) {
+
+    gap:32px;
+
+     article {
+      max-width:140px;
+
+      img {
+        width:140px;
+      }
+     } 
+      
+    }
+
+
+    @media screen and (max-width:350px) {
+
+      gap:auto;
+
+      article {
+      max-width:120px;
+
+        img {
+          width:120px;
+        }
+
+      }
+
+      
+    }
+  
+}
+

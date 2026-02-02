@@ -1,0 +1,59 @@
+@import '../../../../shared/styles/design-system';
+
+section {
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 100px 40px;
+  }
+}
+
+h2 {
+  margin: 0;
+}
+
+.video-wrapper {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 16px;
+  overflow: hidden;
+
+  video {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    background: #1a1a2e;
+  }
+}
+
+.video-desktop {
+  display: none;
+  aspect-ratio: 16 / 9;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.video-mobile {
+  display: block;
+  aspect-ratio: 9 / 16;
+  max-height: 70vh;
+  margin: 0 auto;
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+p {
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0;
+  color: $dark;
+}

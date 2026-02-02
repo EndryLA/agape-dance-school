@@ -1,0 +1,16 @@
+<section class="page-section">
+  <div class="titles-container">
+    <h2>Ce qu'ils disent de nous</h2>
+    <p class="subtitle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, enim.</p>
+  </div>
+
+  <div class="testimonials-list">
+    @for (testimonial of testimonials; track testimonial.name) {
+      <article class="testimonial-card">
+        <img [src]="testimonial.image" [alt]="testimonial.name">
+        <p class="quote">{{ testimonial.text }}</p>
+        <p class="author">{{ testimonial.name }}</p>
+      </article>
+    }
+  </div>
+</section>
