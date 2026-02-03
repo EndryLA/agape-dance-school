@@ -3,5 +3,11 @@
   flex-wrap:wrap;
   gap:clamp(24px,3vw, 48px);
   justify-content: center;
+  max-width:1200px;
+  margin:0 auto;
+  img {
+    width:100%;
+    max-width:300px;
+  }
 }
 
