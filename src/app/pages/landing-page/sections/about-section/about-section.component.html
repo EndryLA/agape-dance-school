@@ -3,13 +3,126 @@
     <h2>Qui sommes-nous ?</h2>
     <p class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, pariatur.</p>
   </div>
-  <div class="video-wrapper">
-    <video class="video-desktop" autoplay muted loop playsinline>
-      <source src="assets/placeholder-video.mp4" type="video/mp4">
-    </video>
-    <video class="video-mobile" autoplay muted loop playsinline>
-      <source src="assets/placeholder-video.mp4" type="video/mp4">
-    </video>
+  <div #videoWrapper class="video-wrapper" [class.is-playing]="isPlaying()">
+    @if (isDesktop()) {
+      <video
+        #videoPlayer
+        class="video-desktop"
+        autoplay
+        muted
+        playsinline
+        (loadedmetadata)="onLoadedMetadata()"
+        (timeupdate)="onTimeUpdate()"
+        (ended)="onVideoEnded()">
+        <source src="assets/videos/reel.mp4" type="video/mp4">
+      </video>
+    } @else {
+      <video
+        #videoPlayer
+        class="video-mobile"
+        muted
+        playsinline
+        (loadedmetadata)="onLoadedMetadata()"
+        (timeupdate)="onTimeUpdate()"
+        (ended)="onVideoEnded()">
+        <source src="assets/videos/reel.mp4" type="video/mp4">
+      </video>
+    }
+
+    <!-- Center play button overlay -->
+    <button
+      type="button"
+      class="play-button-center"
+      [attr.aria-label]="isPlaying() ? 'Pause video' : 'Play video'"
+      (click)="togglePlay()">
+      @if (!isPlaying()) {
+        <!-- Feather: play -->
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+      }
+    </button>
+
+    <!-- Controls bar -->
+    <div class="video-controls">
+      <!-- Play/Pause -->
+      <button
+        type="button"
+        class="control-btn"
+        [attr.aria-label]="isPlaying() ? 'Pause' : 'Play'"
+        (click)="togglePlay()">
+        @if (isPlaying()) {
+          <!-- Feather: pause -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+          </svg>
+        } @else {
+          <!-- Feather: play -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        }
+      </button>
+
+      <!-- Time display -->
+      <span class="time-display">{{ currentTime() }} / {{ duration() }}</span>
+
+      <!-- Progress bar -->
+      <div
+        class="progress-bar"
+        role="slider"
+        tabindex="0"
+        [attr.aria-label]="'Video progress'"
+        [attr.aria-valuenow]="progress()"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        (click)="seek($event)">
+        <div class="progress-filled" [style.width.%]="progress()"></div>
+      </div>
+
+      <!-- Volume -->
+      <button
+        type="button"
+        class="control-btn"
+        [attr.aria-label]="isMuted() ? 'Unmute' : 'Mute'"
+        (click)="toggleMute()">
+        @if (isMuted()) {
+          <!-- Feather: volume-x -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        } @else {
+          <!-- Feather: volume-2 -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        }
+      </button>
+
+      <!-- Fullscreen -->
+      <button
+        type="button"
+        class="control-btn"
+        [attr.aria-label]="isFullscreen() ? 'Exit fullscreen' : 'Fullscreen'"
+        (click)="toggleFullscreen()">
+        @if (isFullscreen()) {
+          <!-- Feather: minimize -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          </svg>
+        } @else {
+          <!-- Feather: maximize -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+        }
+      </button>
+    </div>
   </div>
   <p>
     Agape Dance School est une école de danse chrétienne qui a pour
