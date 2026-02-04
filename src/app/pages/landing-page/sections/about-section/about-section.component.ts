@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
 
 @Component({
   selector: 'app-about-section',
@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnI
   styleUrl: './about-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AboutSectionComponent implements OnInit {
+export class AboutSectionComponent {
   private destroyRef = inject(DestroyRef);
 
   protected isDesktop = signal(false);
@@ -20,26 +20,28 @@ export class AboutSectionComponent implements OnInit {
   private videoRef = viewChild<ElementRef<HTMLVideoElement>>('videoPlayer');
   private wrapperRef = viewChild<ElementRef<HTMLDivElement>>('videoWrapper');
 
-  ngOnInit() {
-    const mediaQuery = window.matchMedia('(min-width: 1024px)');
-    this.isDesktop.set(mediaQuery.matches);
+  constructor() {
+    afterNextRender(() => {
+      const mediaQuery = window.matchMedia('(min-width: 1024px)');
+      this.isDesktop.set(mediaQuery.matches);
 
-    const handler = (e: MediaQueryListEvent) => {
-      this.isDesktop.set(e.matches);
-      this.isPlaying.set(false);
-    };
-    mediaQuery.addEventListener('change', handler);
+      const handler = (e: MediaQueryListEvent) => {
+        this.isDesktop.set(e.matches);
+        this.isPlaying.set(false);
+      };
+      mediaQuery.addEventListener('change', handler);
 
-    const fullscreenHandler = () => {
-      this.isFullscreen.set(this.isInFullscreen());
-    };
-    document.addEventListener('fullscreenchange', fullscreenHandler);
-    document.addEventListener('webkitfullscreenchange', fullscreenHandler);
+      const fullscreenHandler = () => {
+        this.isFullscreen.set(this.isInFullscreen());
+      };
+      document.addEventListener('fullscreenchange', fullscreenHandler);
+      document.addEventListener('webkitfullscreenchange', fullscreenHandler);
 
-    this.destroyRef.onDestroy(() => {
-      mediaQuery.removeEventListener('change', handler);
-      document.removeEventListener('fullscreenchange', fullscreenHandler);
-      document.removeEventListener('webkitfullscreenchange', fullscreenHandler);
+      this.destroyRef.onDestroy(() => {
+        mediaQuery.removeEventListener('change', handler);
+        document.removeEventListener('fullscreenchange', fullscreenHandler);
+        document.removeEventListener('webkitfullscreenchange', fullscreenHandler);
+      });
     });
   }
 

@@ -1,0 +1,86 @@
+@use '../../../../shared/styles/design-system' as ds;
+
+:host {
+  display: block;
+  padding-inline: 16px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+  padding: 32px 24px;
+  background: white;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+
+  .form-group {
+    flex: 1;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  label {
+    font-weight:600;
+  }
+
+
+  input,
+  textarea {
+    padding: 14px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: ds.$dark;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+}
+
+app-button {
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 600px) {
+  .contact-form {
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  app-button {
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+}

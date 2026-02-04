@@ -105,6 +105,46 @@
         }
       }
     }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+      @media (min-width: $breakpoint-md) {
+        display: none;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        border-radius: 50%;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+          transform: scale(1.1);
+        }
+
+        &:focus-visible {
+          outline: 2px solid $dark;
+          outline-offset: 2px;
+        }
+
+        &::after {
+          display: none;
+        }
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
   }
 
   input:checked ~ nav {

@@ -5,6 +5,8 @@ import { StylesSectionComponent } from './sections/styles-section/styles-section
 import { CollaborationsSectionComponent } from './sections/collaborations-section/collaborations-section.component';
 import { TestimonialsSectionComponent } from './sections/testimonials-section/testimonials-section.component';
 import { ValuesSectionComponent } from './sections/values-section/values-section.component';
+import { ContactSectionComponent } from './sections/contact-section/contact-section.component';
+import { FooterComponent } from '../../layout/footer/footer.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -15,6 +17,8 @@ import { ValuesSectionComponent } from './sections/values-section/values-section
     CollaborationsSectionComponent,
     TestimonialsSectionComponent,
     ValuesSectionComponent,
+    ContactSectionComponent,
+    FooterComponent,
   ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',

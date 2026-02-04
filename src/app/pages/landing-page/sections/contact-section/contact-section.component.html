@@ -1,0 +1,33 @@
+<section class="page-section">
+  <div class="titles-container">
+    <h2>Contactez-nous</h2>
+    <p class="subtitle">Une question ? Envie de rejoindre l'aventure ? N'hésitez pas à nous écrire.</p>
+  </div>
+
+  <form action="https://api.web3forms.com/submit" method="POST">
+    <input type="hidden" name="access_key" value="731905a2-8422-4340-86d8-e3d051716dd9">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nom</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+
+    <app-button type="submit" variant="primary" size="md">Envoyer</app-button>
+  </form>
+</section>
