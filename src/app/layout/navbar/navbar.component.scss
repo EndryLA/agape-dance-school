@@ -10,6 +10,11 @@
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
+  transition: transform 0.3s ease;
+
+  &.hidden {
+    transform: translateY(-100%);
+  }
 
   &::before {
     content: '';
