@@ -7,8 +7,9 @@ import { Component, input } from '@angular/core';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-
-  variant = input<'primary' | 'dark' | 'neutral'>('primary')
-  size = input<'sm' | 'md' | 'lg'>('md')
-
+  variant = input<'primary' | 'dark' | 'neutral'>('primary');
+  size = input<'sm' | 'md' | 'lg'>('md');
+  href = input<string>();
+  target = input<'_blank' | '_self'>('_self');
+  label = input<string>();
 }

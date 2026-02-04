@@ -1,3 +1,9 @@
-<button [attr.variant] = "variant()" [attr.size]="size()">
+@if (href()) {
+  <a [href]="href()" [target]="target()" [attr.rel]="target() === '_blank' ? 'noopener noreferrer' : null" [attr.variant]="variant()" [attr.size]="size()">
+    {{ label() }}
+  </a>
+} @else {
+  <button [attr.variant]="variant()" [attr.size]="size()">
     <ng-content></ng-content>
-</button>
+  </button>
+}

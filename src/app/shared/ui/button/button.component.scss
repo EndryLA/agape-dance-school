@@ -1,6 +1,6 @@
 @import '../../styles/design-system';
 
-button {
+button,a {
     background-color: unset;
     outline:none;
     border:none;
@@ -8,25 +8,25 @@ button {
     cursor:pointer;
 }
 
-button[size = 'sm'] {
+button[size = 'sm'], a[size = 'sm'] {
     padding: 8px 24px;
     border-radius: 6px;
     font-size: 14px;
 }
 
-button[size = 'md'] {
+button[size = 'md'], a[size = 'md'] {
     padding: 12px 32px;
     border-radius: 8px;
     font-size: 16px;
 }
 
-button[size = 'lg'] {
+button[size = 'lg'], a[size = 'lg'] {
     padding: 16px 40px;
     border-radius: 10px;
     font-size: 18px;
 }
- 
-button[variant = 'primary'] {
+
+button[variant = 'primary'], a[variant = 'primary'] {
     background-color: $primary;
     border: 1px solid $primary;
 
@@ -36,7 +36,7 @@ button[variant = 'primary'] {
     }
 }
 
-button[variant = 'dark'] {
+button[variant = 'dark'], a[variant = 'dark'] {
     background-color: $dark;
     color: white;
     border: 1px solid $dark;
@@ -47,7 +47,7 @@ button[variant = 'dark'] {
     }
 }
 
-button[variant = 'neutral'] {
+button[variant = 'neutral'], a[variant = 'neutral'] {
     background-color: $neutral;
     color: #333333;
     border: 1px solid #CCCCCC;
