@@ -47,6 +47,8 @@ export class AboutSectionComponent implements OnInit {
     const video = this.videoRef()?.nativeElement;
     if (video) {
       this.duration.set(this.formatTime(video.duration));
+      this.isMuted.set(video.muted);
+      this.syncPlayingState();
     }
   }
 
@@ -58,8 +60,11 @@ export class AboutSectionComponent implements OnInit {
     }
   }
 
-  protected onVideoEnded() {
-    this.isPlaying.set(false);
+  protected syncPlayingState() {
+    const video = this.videoRef()?.nativeElement;
+    if (video) {
+      this.isPlaying.set(!video.paused);
+    }
   }
 
   protected togglePlay() {
@@ -68,11 +73,11 @@ export class AboutSectionComponent implements OnInit {
 
     if (video.paused) {
       video.play();
-      this.isPlaying.set(true);
     } else {
       video.pause();
-      this.isPlaying.set(false);
     }
+    // Sync state after action
+    setTimeout(() => this.syncPlayingState());
   }
 
   protected toggleMute() {

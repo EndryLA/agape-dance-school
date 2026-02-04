@@ -13,7 +13,8 @@
         playsinline
         (loadedmetadata)="onLoadedMetadata()"
         (timeupdate)="onTimeUpdate()"
-        (ended)="onVideoEnded()"
+        (play)="syncPlayingState()"
+        (pause)="syncPlayingState()"
         (click)="togglePlay()">
         <source src="assets/videos/reel.mp4" type="video/mp4">
       </video>
@@ -25,7 +26,8 @@
         playsinline
         (loadedmetadata)="onLoadedMetadata()"
         (timeupdate)="onTimeUpdate()"
-        (ended)="onVideoEnded()"
+        (play)="syncPlayingState()"
+        (pause)="syncPlayingState()"
         (click)="togglePlay()">
         <source src="assets/videos/reel.mp4" type="video/mp4">
       </video>
