@@ -5,9 +5,16 @@
   justify-content: center;
   max-width:1200px;
   margin:0 auto;
+
+
   img {
     width:100%;
-    max-width:300px;
+    max-width:350px;
   }
 }
 
+@media screen and (max-width:350px) {
+  img {
+    max-width: unset;
+  }
+}

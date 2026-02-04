@@ -5,12 +5,20 @@
   top: 0;
   left: 0;
   right: 0;
-  background: transparent;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: -1;
+  }
 
   @media (min-width: $breakpoint-md) {
     padding: 20px 40px;
