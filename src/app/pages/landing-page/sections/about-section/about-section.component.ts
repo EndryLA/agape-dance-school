@@ -31,13 +31,15 @@ export class AboutSectionComponent implements OnInit {
     mediaQuery.addEventListener('change', handler);
 
     const fullscreenHandler = () => {
-      this.isFullscreen.set(!!document.fullscreenElement);
+      this.isFullscreen.set(this.isInFullscreen());
     };
     document.addEventListener('fullscreenchange', fullscreenHandler);
+    document.addEventListener('webkitfullscreenchange', fullscreenHandler);
 
     this.destroyRef.onDestroy(() => {
       mediaQuery.removeEventListener('change', handler);
       document.removeEventListener('fullscreenchange', fullscreenHandler);
+      document.removeEventListener('webkitfullscreenchange', fullscreenHandler);
     });
   }
 
@@ -93,13 +95,33 @@ export class AboutSectionComponent implements OnInit {
 
   protected toggleFullscreen() {
     const wrapper = this.wrapperRef()?.nativeElement;
+    const video = this.videoRef()?.nativeElement;
     if (!wrapper) return;
 
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
+    if (this.isInFullscreen()) {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      }
     } else {
-      wrapper.requestFullscreen();
+      // Try wrapper first (keeps custom controls), fall back to video for iOS
+      if (wrapper.requestFullscreen) {
+        wrapper.requestFullscreen();
+      } else if ((wrapper as any).webkitRequestFullscreen) {
+        (wrapper as any).webkitRequestFullscreen();
+      } else if (video && (video as any).webkitEnterFullscreen) {
+        // iOS Safari: only video element supports fullscreen
+        (video as any).webkitEnterFullscreen();
+      }
     }
+  }
+
+  private isInFullscreen(): boolean {
+    return !!(
+      document.fullscreenElement ||
+      (document as any).webkitFullscreenElement
+    );
   }
 
   private formatTime(seconds: number): string {

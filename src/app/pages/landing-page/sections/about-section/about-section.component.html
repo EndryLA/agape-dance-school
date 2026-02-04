@@ -13,7 +13,8 @@
         playsinline
         (loadedmetadata)="onLoadedMetadata()"
         (timeupdate)="onTimeUpdate()"
-        (ended)="onVideoEnded()">
+        (ended)="onVideoEnded()"
+        (click)="togglePlay()">
         <source src="assets/videos/reel.mp4" type="video/mp4">
       </video>
     } @else {
@@ -24,24 +25,25 @@
         playsinline
         (loadedmetadata)="onLoadedMetadata()"
         (timeupdate)="onTimeUpdate()"
-        (ended)="onVideoEnded()">
+        (ended)="onVideoEnded()"
+        (click)="togglePlay()">
         <source src="assets/videos/reel.mp4" type="video/mp4">
       </video>
     }
 
-    <!-- Center play button overlay -->
-    <button
-      type="button"
-      class="play-button-center"
-      [attr.aria-label]="isPlaying() ? 'Pause video' : 'Play video'"
-      (click)="togglePlay()">
-      @if (!isPlaying()) {
+    <!-- Center play button overlay (only when paused) -->
+    @if (!isPlaying()) {
+      <button
+        type="button"
+        class="play-button-center"
+        aria-label="Play video"
+        (click)="togglePlay()">
         <!-- Feather: play -->
         <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-      }
-    </button>
+      </button>
+    }
 
     <!-- Controls bar -->
     <div class="video-controls">
@@ -124,10 +126,4 @@
       </button>
     </div>
   </div>
-  <p>
-    Agape Dance School est une école de danse chrétienne qui a pour
-    mission de partager la joie de la danse dans un environnement
-    bienveillant et inspirant. Nous croyons que la danse est un
-    moyen puissant d'expression et de connexion.
-  </p>
 </section>
