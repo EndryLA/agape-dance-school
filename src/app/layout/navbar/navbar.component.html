@@ -1,7 +1,7 @@
 <header class="navbar" [class.hidden]="hidden()">
   <img class='logo' src="assets/logo.png" alt="Logo Agape Dance School">
 
-  <input type="checkbox" id="menu">
+  <input type="checkbox" id="menu" #menuToggle>
 
   <label for="menu" class="hamburger">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -18,11 +18,11 @@
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </label>
-    <a href="#cours">Nos cours</a>
-    <a href="#collaborations">Nos collaborations</a>
-    <a href="#temoignages">Témoignages</a>
-    <a href="#valeurs">Nos valeurs</a>
-    <a href="#contact">Nous contacter</a>
+    <a routerLink="/" fragment="cours" (click)="menuToggle.checked = false">Nos cours</a>
+    <a routerLink="/" fragment="collaborations" (click)="menuToggle.checked = false">Nos collaborations</a>
+    <a routerLink="/" fragment="temoignages" (click)="menuToggle.checked = false">Témoignages</a>
+    <a routerLink="/" fragment="valeurs" (click)="menuToggle.checked = false">Nos valeurs</a>
+    <a routerLink="/" fragment="contact" (click)="menuToggle.checked = false">Nous contacter</a>
     <app-button href="https://www.helloasso.com/associations/agape-company" target="_blank" label="Réserver mon cours"></app-button>
 
     <div class="social-links">

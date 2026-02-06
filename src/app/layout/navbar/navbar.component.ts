@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '../../shared/ui/button/button.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   host: {
